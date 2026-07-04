@@ -1,6 +1,6 @@
 # EdexUI-version-Flix
 
-# 🔧 Edex-CLI
+# Edex-CLI
 
 > *TUI System Monitor inspirado no Edex UI, porém SEM baboseiras. Leve, rápido, dentro do terminal.*
 
@@ -9,11 +9,11 @@
 
 ## 🚀 Features
 
-- ✅ CPU/Memory/Disk/Network monitoring via `/proc` / `/sys`
-- ✅ ASCII graphs & real-time rendering (Termbox backend)
-- ✅ Customização via scripts Ruby (fork/exec IPC)
-- ✅ Unix Domain Sockets para comunicação segura
-- ✅ Keyboard shortcuts + themes
+- CPU/Memory/Disk/Network monitoring via `/proc` / `/sys`
+- ASCII graphs & real-time rendering (Termbox backend)
+- Customização via scripts Ruby (fork/exec IPC)
+- Unix Domain Sockets para comunicação segura
+- Keyboard shortcuts + themes
 - ❌ Sem 3D desnecessário
 - ❌ Sem efeitos sonoros irritantes
 - ❌ Sem Electron bloat lol
