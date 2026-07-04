@@ -7,7 +7,7 @@
 **Stack:** C++17 + Termbox + Ruby Scripting  
 **Platform:** Linux (Arch, Ubuntu, Debian)
 
-## 🚀 Features
+## Features
 
 - CPU/Memory/Disk/Network monitoring via `/proc` / `/sys`
 - ASCII graphs & real-time rendering (Termbox backend)
