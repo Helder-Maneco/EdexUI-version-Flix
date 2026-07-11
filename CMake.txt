@@ -1,0 +1,161 @@
+#  CMakeLists.txt - Edex-CLI Project
+
+cmake_minimum_required(VERSION 3.10)
+project(edex-cli VERSION 0.1.0 LANGUAGES CXX)
+
+#  Configurações Globais
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+#  Opções de Build
+option(BUILD_TESTS "Build unit tests" OFF)
+option(ENABLE_RUBY "Enable Ruby scripting support" OFF)
+
+#  Diretorios base
+set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(PROJECT_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+
+# ====================================
+#  Dependências Externas
+# ====================================
+
+# Termbox (submodule ou fetch)
+# Opcional: git submodule add https://github.com/termbox/termbox
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(TERMBOK REQUIRED termbox)
+
+if(NOT TERMBOK_FOUND)
+    message(FATAL_ERROR "Termbox não encontrado. Instala no teu Arch com 'pacman -S termbox' lol")
+endif()
+
+# ====================================
+#  Biblioteca de Cores do Core
+# ====================================
+add_library(core STATIC
+    src/core/stats_collector.cpp
+    src/core/cpu_stats.cpp
+    src/core/mem_stats.cpp
+    src/core/disk_stats.cpp
+    src/core/net_stats.cpp
+    src/core/temp_stats.cpp
+)
+
+target_include_directories(core PUBLIC
+    ${PROJECT_SOURCE_DIR}/src/core
+    ${TERMBOK_INCLUDE_DIRS}
+)
+
+target_link_libraries(core PRIVATE
+    ${TERMBOK_LIBRARIES}
+    pthread
+)
+
+# ====================================
+#  Renderer TUI (Termbox)
+# ====================================
+add_library(ui STATIC
+    src/ui/renderer.cpp
+    src/ui/widgets/cpu_graph.cpp
+    src/ui/widgets/memory_bar.cpp
+    src/ui/widgets/text_panel.cpp
+    src/ui/widgets/table.cpp
+    src/ui/colors.cpp
+)
+
+target_include_directories(ui PUBLIC
+    ${PROJECT_SOURCE_DIR}/src/ui
+    ${TERMBOK_INCLUDE_DIRS}
+)
+
+target_link_libraries(ui PUBLIC core)
+
+# ====================================
+#  Módulo de IPC
+# ====================================
+add_library(ipc STATIC
+    src/ipc/socket_server.cpp
+    src/ipc/socket_client.cpp
+    src/ipc/protocol.cpp
+)
+
+target_include_directories(ipc PUBLIC ${PROJECT_SOURCE_DIR}/src/ipc)
+target_link_libraries(ipc PUBLIC core)
+
+# ====================================
+#  Executável Principal
+# ====================================
+add_executable(${PROJECT_NAME}
+    src/main.cpp
+    src/app.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        ui
+        ipc
+        core
+        pthread
+        rt
+)
+
+# ====================================
+#  Testes (Opcional)
+# ====================================
+if(BUILD_TESTS)
+    find_package(GTest QUIET)
+    
+    if(GTEST_FOUND)
+        enable_testing()
+        
+        add_executable(tests
+            tests/test_stats_collector.cpp
+            tests/test_renderer.cpp
+            tests/test_ipc.cpp
+        )
+        
+        target_link_libraries(tests PRIVATE core ui GTest::GTest GTest::Main pthread)
+        
+        include(GoogleTest)
+        gtest_discover_tests(tests)
+    else()
+        message(WARNING "GTest não encontrado - testes desabilitados lol")
+    endif()
+endif()
+
+# ====================================
+#  Regras de Instalação
+# ====================================
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin
+)
+
+install(DIRECTORY scripts/
+    DESTINATION share/${PROJECT_NAME}
+)
+
+install(FILES README.md LICENSE DESTINATION share/doc/${PROJECT_NAME})
+
+# ====================================
+#  Mensagem de Resúmo
+# ====================================
+message(STATUS "")
+message(STATUS " Edex-CLI Configuration Complete!")
+message(STATUS "   Version: ${PROJECT_VERSION}")
+message(STATUS "   Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "   Ruby Support: ${ENABLE_RUBY}")
+message(STATUS "")
+
+# ====================================
+# 🛑 Notas da Kurisu
+# ====================================
+# Este CMakeLists foi criado pra ser MANTERÍVEL e EXTENSÍVEL
+# Não é perfeito, mas funciona pro MVP e depois melhora
+
+# Compila
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make -j$(nproc)
+
+# Roda (se tiver sucesso)
+./edex-cli
