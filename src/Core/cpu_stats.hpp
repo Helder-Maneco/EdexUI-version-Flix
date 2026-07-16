@@ -4,36 +4,37 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <cstdint>
+#include <algorithm>
 
-struct CPUStats
-{
-    double usagePercent; // Uso atual %
-    double previousUsage; // Cache pra calcular delta
-    std::string coreName; // "CPU0", "CPU1", ...
-    int idleTime;  // Tempo ocioso acumulado
-    int totalCores;
+static constexpr int NUM_CPU_FIELDS = 6;  // ← Define NO HEADER
+
+struct CPUStats {
+    double usagePercent = 0.0;
+    double previousUsage = 0.0;
+    std::string coreName = "global";
+    int idleTime = 0;
+    int totalCores = 0;
 };
 
-class CPUMonitor
-{
-    private:
-	std::array<long long, 6> lastStat; // user, nice, system
-	std::array<long long, 6> currentStat; 
-	static constexpr int REFRESH_INTERVAL_MS = 500;
-
-    public:
-	CPUMonitor();
-
-	 //Lê /proc/stat e calcula percentual de Uso
-	 CPUStats update();
-
-	 // Pega dados brutos do arquivo (útil para debug)
-	 std::string getRawStats() const;
-
-    private:
-	 bool readProcStat();
-	 long long calculateTotal(const std::array<long long, 6>& arr);
-	 double calculateUsage(long long idleDiff, long long totalTimeDiff);
+class CPUMonitor {
+private:
+    std::array<long long, NUM_CPU_FIELDS> currentStat{0, 0, 0, 0, 0, 0};
+    std::array<long long, NUM_CPU_FIELDS> lastStat{0, 0, 0, 0, 0, 0};
+    
+    long long totalPrevious = 0;
+    long long idlePrevious = 0;
+    CPUStats lastStats;
+    
+public:
+    CPUMonitor();
+    
+    CPUStats update();
+    
+    bool readProcStat();                          // ← Declara explicitamente
+    long long calculateTotal(const std::array<long long, NUM_CPU_FIELDS>& arr);  // ← Mesmo parâmetro
+    
+    std::string getRawStats() const;
 };
 
-#endif // ! CPU_STATS_HPP
+#endif // CPU_STATS_HPP

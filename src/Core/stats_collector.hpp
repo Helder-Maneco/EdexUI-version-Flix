@@ -12,42 +12,51 @@
 #include "disk_stats.hpp"
 #include "temp_stats.hpp"
 
-class StatsCollector{
-    private:
-	std::atomic<bool> running{false};
-	std::unique_ptr<std::thread> collectorThread;
-	mutable std::mutex dataMutex;
+struct FullSystemStats {
+    CPUStats cpu;
+    MemStats memory;
+    NetStats network;
+    DiskStats disk;
+    TempStats temperature;
+    
+    std::chrono::system_clock::time_point lastUpdate;
+};
 
-	//Stats individuais (geridos separadamente)
-	CPUMonitor cpu;
-	MemoryMonitor memory;
-	NetworkMonitor network;
-	DiskMonitor disk;
-	TempMonitor temperature;
+class StatsCollector {
+private:
+    std::atomic<bool> running{false};
+    std::unique_ptr<std::thread> collectorThread;
+    mutable std::mutex dataMutex;
 
-    public:
-	StatsCollector = default;
-	~StatsCollector();
+    // Stats individuais (geridos separadamente)
+    CPUMonitor cpu;
+    MemoryMonitor memory;
+    NetworkMonitor network;
+    DiskMonitor disk;
+    TempMonitor temperature;
 
-	//Inicia colete em background thread
-	void start();
+public:
+    StatsCollector() = default;
+    ~StatsCollector();
 
-	//Para coleta 
-	void stop();
+    // Inicia coleta em background thread
+    void start();
 
-	//Getters thread-safe
-	CPUStats getCpuData() const;
-	MemStats getMemData() const;
-	NetStats getNetData() const;
-	DiskStats getDiskData() const;
-	TempStats getTempData() const;
+    // Para coleta
+    void stop();
 
-	//Retorna struct  completo
-	FullSystemStats getFullStats() const;
+    // Getters thread-safe
+    CPUStats getCpuData() const;
+    MemStats getMemData() const;
+    NetStats getNetData() const;
+    DiskStats getDiskData() const;
+    TempStats getTempData() const;
 
-    private:
-	void collectLoop();
+    // Retorna struct completo com todos os dados
+    FullSystemStats getFullStats() const;
+
+private:
+    void collectLoop();
 };
 
 #endif // STATSCOLLECTOR_HPP
-
