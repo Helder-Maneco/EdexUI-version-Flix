@@ -26,7 +26,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(TERMBOK REQUIRED termbox)
 
 if(NOT TERMBOK_FOUND)
-    message(FATAL_ERROR "Termbox não encontrado. Instala no teu Arch com 'pacman -S termbox' lol")
+    message(FATAL_ERROR "Termbox não encontrado. Instala no teu Arch com 'pacman -S termbox'")
 endif()
 
 # ====================================

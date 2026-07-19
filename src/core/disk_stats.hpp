@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <filesystem>
 
-// ✅ MOVE 'Partition' PRA FORA DE 'DiskStats'
+//  MOVE 'Partition' PRA FORA DE 'DiskStats'
 struct Partition {
     std::string mountPoint;
     std::string device;
