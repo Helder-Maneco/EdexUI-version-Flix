@@ -5,29 +5,29 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <algorithm>
+#include <algorithm>      // ← Para std::clamp se precisar depois
 #include <filesystem>
 
-//  MOVE 'Partition' PRA FORA DE 'DiskStats'
+// ✅ Move 'Partition' pra fora para evitar problemas de escopo no LSP
 struct Partition {
-    std::string mountPoint;
-    std::string device;
+    std::string mountPoint = "";
+    std::string device = "";
 
-    uint64_t total;
-    uint64_t used;
-    uint64_t free;
-    double usagePercent;
+    uint64_t total = 0;
+    uint64_t used = 0;
+    uint64_t free = 0;
+    double usagePercent = 0.0;
 
-    uint64_t readOps;
-    uint64_t writeOps;
-    double readSpeedMBps;
-    double writeSpeedMBps;
+    uint64_t readOps = 0;
+    uint64_t writeOps = 0;
+    double readSpeedMBps = 0.0;
+    double writeSpeedMBps = 0.0;
 };
 
 struct DiskStats {
-    std::vector<Partition> partitions;
-    uint64_t totalSystemSpace;
-    uint64_t usedSystemSpace;
+    std::vector<Partition> partitions{};
+    uint64_t totalSystemSpace = 0;
+    uint64_t usedSystemSpace = 0;
 };
 
 class DiskMonitor {
@@ -45,7 +45,11 @@ private:
     static constexpr int REFRESH_INTERVAL_MS = 1000;
 
     std::vector<std::string> getMountPoints();
+    
+    // ✅ DECLARAÇÃO EXATA — Mesma assinatura no header e .cpp
     uint64_t getUsagePercent(uint64_t used, uint64_t total);
+    
+    std::string parseDiskInfo(const std::string& devicePath);
 };
 
 #endif // DISK_STATS_HPP
