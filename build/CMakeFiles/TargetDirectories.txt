@@ -1,0 +1,8 @@
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/core.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/edex-cli.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/edit_cache.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/rebuild_cache.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/list_install_components.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/install.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/install/local.dir
+/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles/install/strip.dir

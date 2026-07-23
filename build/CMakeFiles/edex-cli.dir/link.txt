@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/edex-cli.dir/link.d "CMakeFiles/edex-cli.dir/src/main.cpp.o" "CMakeFiles/edex-cli.dir/src/app.cpp.o" -o edex-cli  libcore.a -lpthread -lrt

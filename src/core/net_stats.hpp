@@ -3,51 +3,46 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
 #include <cstdint>
 #include <algorithm>
 
 struct Connection {
-    std::string interface;      // eth0, lo, ens33...
-    uint64_t rxBytes;           // Bytes recebidos
-    uint64_t txBytes;           // Bytes enviados
-    double rxSpeedMbps;         // Velocidade RX atual Mbps
-    double txSpeedMbps;         // Velocidade TX atual Mbps
-    uint32_t rxErrors;          // Erros na recepção
-    uint32_t txDrops;           // Pacotes descartados envio
+    std::string interface = "";
+    uint64_t rxBytes = 0;
+    uint64_t txBytes = 0;
+    double rxSpeedMbps = 0.0;
+    double txSpeedMbps = 0.0;
+    uint32_t rxErrors = 0;
+    uint32_t txDrops = 0;
 };
 
 struct NetStats {
-    std::vector<Connection> interfaces;
-    uint64_t totalRxBytes;          // Total acumulado RX
-    uint64_t totalTxBytes;          // Total acumulado TX
+    std::vector<Connection> interfaces{};
+    uint64_t totalRxBytes = 0;
+    uint64_t totalTxBytes = 0;
+};
+
+//Move RawStat
+struct NetworkMonitorRawStat {
+    uint64_t rxBytes = 0;
+    uint64_t rxErrors = 0;
+    uint64_t rxDrops = 0;
+    uint64_t txBytes = 0;
+    uint64_t txErrors = 0;
+    uint64_t txDrops = 0;
 };
 
 class NetworkMonitor {
-private:
-    std::unordered_map<std::string, Connection> lastReadings;
-    static constexpr int REFRESH_INTERVAL_MS = 500;
-
 public:
-    NetworkMonitor() = default;
+    NetworkMonitor();
     
-    // Lê /proc/net/dev e calcula velocidade atual
     NetStats update();
-    
-    // Retorna apenas interfaces principais (ignora loopback/lo)
     std::vector<std::string> getActiveInterfaces() const;
 
 private:
-    struct RawStat {
-        uint64_t rxBytes;
-        uint64_t rxErrors;
-        uint64_t rxDrops;
-        uint64_t txBytes;
-        uint64_t txErrors;
-        uint64_t txDrops;
-    };
-    
-    RawStat readInterface(const std::string& iface);
+    static constexpr int REFRESH_INTERVAL_MS = 500;
+    //Usa nome externo em vez de RawStat interno
+    NetworkMonitorRawStat readInterface(const std::string& iface);
 };
 
 #endif // NET_STATS_HPP

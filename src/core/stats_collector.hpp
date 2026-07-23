@@ -5,7 +5,7 @@
 #include <atomic>
 #include <mutex>
 #include <chrono>
-#include <map>
+#include <memory>
 #include "cpu_stats.hpp"
 #include "mem_stats.hpp"
 #include "net_stats.hpp"
@@ -18,8 +18,7 @@ struct FullSystemStats {
     NetStats network;
     DiskStats disk;
     TempStats temperature;
-    
-    std::chrono::system_clock::time_point lastUpdate;
+    std::chrono::system_clock::time_point lastUpdate = std::chrono::system_clock::now();
 };
 
 class StatsCollector {
@@ -27,33 +26,38 @@ private:
     std::atomic<bool> running{false};
     std::unique_ptr<std::thread> collectorThread;
     mutable std::mutex dataMutex;
-
-    // Stats individuais (geridos separadamente)
+    
+    static constexpr int REFRESH_INTERVAL_MS = 1000;  
+    
+//Monitors internos
     CPUMonitor cpu;
     MemoryMonitor memory;
     NetworkMonitor network;
     DiskMonitor disk;
     TempMonitor temperature;
+    
+//CACHES para evitar atualização dupla!
+    CPUStats cachedCPU{};
+    MemStats cachedMemory{};
+    NetStats cachedNetwork{};
+    DiskStats cachedDisk{};
+    TempStats cachedTemperature{};
 
 public:
-    StatsCollector() = default;
+    StatsCollector();
     ~StatsCollector();
 
-    // Inicia coleta em background thread
     void start();
-
-    // Para coleta
     void stop();
 
-    // Getters thread-safe
-    CPUStats getCpuData() const;
-    MemStats getMemData() const;
-    NetStats getNetData() const;
-    DiskStats getDiskData() const;
-    TempStats getTempData() const;
+//Métodos NÃO são const porque precisam lock guard
+    CPUStats getCpuData();
+    MemStats getMemData();
+    NetStats getNetData();
+    DiskStats getDiskData();
+    TempStats getTempData();
 
-    // Retorna struct completo com todos os dados
-    FullSystemStats getFullStats() const;
+    FullSystemStats getFullStats();
 
 private:
     void collectLoop();

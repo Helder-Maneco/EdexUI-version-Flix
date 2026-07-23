@@ -8,32 +8,28 @@
 #include <fstream>
 
 struct MemStats {
-    uint64_t total = 0;          // Total memória em bytes
-    uint64_t available = 0;      // Memória disponível em bytes
-    uint64_t used = 0;           // Memória usada em bytes
-    double usagePercent = 0.0;   // Percentual de uso (0.0 - 100.0)
+    uint64_t total = 0;
+    uint64_t available = 0;
+    uint64_t used = 0;
+    double usagePercent = 0.0;
     
-    uint64_t swapTotal = 0;      // Swap total
-    uint64_t swapUsed = 0;       // Swap usado
-    double swapUsagePercent = 0.0; // Percentual swap
+    uint64_t swapTotal = 0;
+    uint64_t swapUsed = 0;
+    double swapUsagePercent = 0.0;
     
-    std::string unit = "MB";     // "MB" ou "GB" pra exibição
+    std::string unit = "MB";
 };
 
 class MemoryMonitor {
-private:
-    static constexpr int REFRESH_INTERVAL_MS = 500;
-
 public:
-    MemoryMonitor() = default;
+    MemoryMonitor();//Construtor simples
     
-    // Lê /proc/meminfo e retorna stats atualizados
-    MemStats update();
+    MemStats update();//Só métodos públicos
     
-    // Formata bytes pra string legivel (1.5 GB, etc)
     static std::string formatBytes(uint64_t bytes);
 
 private:
+    static constexpr int REFRESH_INTERVAL_MS = 500;
     std::map<std::string, uint64_t> parseMemInfo();
 };
 
