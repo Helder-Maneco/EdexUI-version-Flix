@@ -14,9 +14,17 @@
 - Customização via scripts Ruby (fork/exec IPC)
 - Unix Domain Sockets para comunicação segura
 - Keyboard shortcuts + themes
-- ❌ Sem 3D desnecessário
-- ❌ Sem efeitos sonoros irritantes
-- ❌ Sem Electron bloat lol
+- ❌ Sem 3D
+- ❌ Sem efeitos sonoros
+- ❌ Sem Electron
+
+---
+# **Preview**
+
+> **System Monitor**
+![system monitor](media/system.png)
+
+---
 
 ## 📦 Installation
 
