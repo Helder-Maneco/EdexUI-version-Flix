@@ -13,7 +13,7 @@ void StatsCollector::start() {
     
     running.store(true);
     collectorThread = std::make_unique<std::thread>(&StatsCollector::collectLoop, this);
-    std::cout << "🚀 Stats collection started!\n";
+    std::cout << " Stats collection started!\n";
 }
 
 void StatsCollector::stop() {
@@ -22,7 +22,7 @@ void StatsCollector::stop() {
         collectorThread->join();
     }
     collectorThread.reset();
-    std::cout << "🛑 Stats collection stopped.\n";
+    std::cout << " Stats collection stopped.\n";
 }
 
 void StatsCollector::collectLoop() {
@@ -42,7 +42,7 @@ void StatsCollector::collectLoop() {
     }
 }
 
-// ✅ GETTERS AGORA SEM CONST E RETORNAM CACHE!
+//  GETTERS AGORA SEM CONST E RETORNAM CACHE!
 CPUStats StatsCollector::getCpuData() {
     std::lock_guard<std::mutex> lock(dataMutex);
     return cachedCPU;  // Retorna copia do cache, não chama update()

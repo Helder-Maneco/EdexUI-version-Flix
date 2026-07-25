@@ -45,7 +45,6 @@ std::vector<std::string> DiskMonitor::getMountPoints() {
     return mounts;
 }
 
-// ✅ IMPLEMENTAÇÃO CORRETA — Signatura EXATAMENTE igual ao header
 uint64_t DiskMonitor::getUsagePercent(uint64_t used, uint64_t total) {
     if (total == 0) return 0;
     return static_cast<uint64_t>((static_cast<double>(used) / static_cast<double>(total)) * 100.0);
