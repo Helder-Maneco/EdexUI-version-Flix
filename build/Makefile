@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build//CMakeFiles/progress.marks
@@ -175,6 +130,32 @@ core/fast:
 .PHONY : core/fast
 
 #=============================================================================
+# Target rules for targets named ui
+
+# Build rule for target.
+ui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ui
+.PHONY : ui
+
+# fast build rule for target.
+ui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ui.dir/build.make CMakeFiles/ui.dir/build
+.PHONY : ui/fast
+
+#=============================================================================
+# Target rules for targets named ipc
+
+# Build rule for target.
+ipc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ipc
+.PHONY : ipc
+
+# fast build rule for target.
+ipc/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipc.dir/build.make CMakeFiles/ipc.dir/build
+.PHONY : ipc/fast
+
+#=============================================================================
 # Target rules for targets named edex-cli
 
 # Build rule for target.
@@ -186,30 +167,6 @@ edex-cli: cmake_check_build_system
 edex-cli/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/edex-cli.dir/build.make CMakeFiles/edex-cli.dir/build
 .PHONY : edex-cli/fast
-
-src/app.o: src/app.cpp.o
-.PHONY : src/app.o
-
-# target to build an object file
-src/app.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/edex-cli.dir/build.make CMakeFiles/edex-cli.dir/src/app.cpp.o
-.PHONY : src/app.cpp.o
-
-src/app.i: src/app.cpp.i
-.PHONY : src/app.i
-
-# target to preprocess a source file
-src/app.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/edex-cli.dir/build.make CMakeFiles/edex-cli.dir/src/app.cpp.i
-.PHONY : src/app.cpp.i
-
-src/app.s: src/app.cpp.s
-.PHONY : src/app.s
-
-# target to generate assembly for a file
-src/app.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/edex-cli.dir/build.make CMakeFiles/edex-cli.dir/src/app.cpp.s
-.PHONY : src/app.cpp.s
 
 src/core/cpu_stats.o: src/core/cpu_stats.cpp.o
 .PHONY : src/core/cpu_stats.o
@@ -355,6 +312,30 @@ src/core/temp_stats.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/core/temp_stats.cpp.s
 .PHONY : src/core/temp_stats.cpp.s
 
+src/ipc/socket_server.o: src/ipc/socket_server.cpp.o
+.PHONY : src/ipc/socket_server.o
+
+# target to build an object file
+src/ipc/socket_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipc.dir/build.make CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.o
+.PHONY : src/ipc/socket_server.cpp.o
+
+src/ipc/socket_server.i: src/ipc/socket_server.cpp.i
+.PHONY : src/ipc/socket_server.i
+
+# target to preprocess a source file
+src/ipc/socket_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipc.dir/build.make CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.i
+.PHONY : src/ipc/socket_server.cpp.i
+
+src/ipc/socket_server.s: src/ipc/socket_server.cpp.s
+.PHONY : src/ipc/socket_server.s
+
+# target to generate assembly for a file
+src/ipc/socket_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipc.dir/build.make CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.s
+.PHONY : src/ipc/socket_server.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -379,6 +360,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/edex-cli.dir/build.make CMakeFiles/edex-cli.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/ui/renderer.o: src/ui/renderer.cpp.o
+.PHONY : src/ui/renderer.o
+
+# target to build an object file
+src/ui/renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ui.dir/build.make CMakeFiles/ui.dir/src/ui/renderer.cpp.o
+.PHONY : src/ui/renderer.cpp.o
+
+src/ui/renderer.i: src/ui/renderer.cpp.i
+.PHONY : src/ui/renderer.i
+
+# target to preprocess a source file
+src/ui/renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ui.dir/build.make CMakeFiles/ui.dir/src/ui/renderer.cpp.i
+.PHONY : src/ui/renderer.cpp.i
+
+src/ui/renderer.s: src/ui/renderer.cpp.s
+.PHONY : src/ui/renderer.s
+
+# target to generate assembly for a file
+src/ui/renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ui.dir/build.make CMakeFiles/ui.dir/src/ui/renderer.cpp.s
+.PHONY : src/ui/renderer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -386,16 +391,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... core"
 	@echo "... edex-cli"
-	@echo "... src/app.o"
-	@echo "... src/app.i"
-	@echo "... src/app.s"
+	@echo "... ipc"
+	@echo "... ui"
 	@echo "... src/core/cpu_stats.o"
 	@echo "... src/core/cpu_stats.i"
 	@echo "... src/core/cpu_stats.s"
@@ -414,9 +414,15 @@ help:
 	@echo "... src/core/temp_stats.o"
 	@echo "... src/core/temp_stats.i"
 	@echo "... src/core/temp_stats.s"
+	@echo "... src/ipc/socket_server.o"
+	@echo "... src/ipc/socket_server.i"
+	@echo "... src/ipc/socket_server.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/ui/renderer.o"
+	@echo "... src/ui/renderer.i"
+	@echo "... src/ui/renderer.s"
 .PHONY : help
 
 

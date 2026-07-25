@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/main.cpp" "CMakeFiles/edex-cli.dir/src/main.cpp.o" "gcc" "CMakeFiles/edex-cli.dir/src/main.cpp.o.d"
-  "" "edex-cli" "gcc" "CMakeFiles/edex-cli.dir/link.d"
+  "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ipc/socket_server.cpp" "CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.o" "gcc" "CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

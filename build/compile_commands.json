@@ -37,14 +37,20 @@
 },
 {
   "directory": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build",
-  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/edex-cli.dir/src/main.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/main.cpp",
-  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/main.cpp",
-  "output": "CMakeFiles/edex-cli.dir/src/main.cpp.o"
+  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/ui.dir/src/ui/renderer.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/renderer.cpp",
+  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/renderer.cpp",
+  "output": "CMakeFiles/ui.dir/src/ui/renderer.cpp.o"
 },
 {
   "directory": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build",
-  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/edex-cli.dir/src/app.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/app.cpp",
-  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/app.cpp",
-  "output": "CMakeFiles/edex-cli.dir/src/app.cpp.o"
+  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ipc/socket_server.cpp",
+  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ipc/socket_server.cpp",
+  "output": "CMakeFiles/ipc.dir/src/ipc/socket_server.cpp.o"
+},
+{
+  "directory": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build",
+  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/edex-cli.dir/src/main.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/main.cpp",
+  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/main.cpp",
+  "output": "CMakeFiles/edex-cli.dir/src/main.cpp.o"
 }
 ]

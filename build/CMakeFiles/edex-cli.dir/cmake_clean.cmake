@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/edex-cli.dir/link.d"
-  "CMakeFiles/edex-cli.dir/src/app.cpp.o"
-  "CMakeFiles/edex-cli.dir/src/app.cpp.o.d"
   "CMakeFiles/edex-cli.dir/src/main.cpp.o"
   "CMakeFiles/edex-cli.dir/src/main.cpp.o.d"
   "edex-cli"

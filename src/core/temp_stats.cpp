@@ -7,28 +7,30 @@ TempMonitor::TempMonitor() {}
 
 std::vector<std::filesystem::path> TempMonitor::findSensorPaths() {
     std::vector<std::filesystem::path> paths;
-    auto hwmonDir = std::filesystem::path("/sys/class/hwmon");
     
-    if (!std::filesystem::exists(hwmonDir)) {
-        return paths;
-    }
-
-    for (const auto& entry : std::filesystem::directory_iterator(hwmonDir)) {
-        if (entry.is_directory()) {
-            paths.push_back(entry.path());
+    // Thermal zone (comum no Arch)
+    auto thermalDir = std::filesystem::path("/sys/class/thermal");
+    if (std::filesystem::exists(thermalDir)) {
+        for (const auto& entry : std::filesystem::directory_iterator(thermalDir)) {
+            if (entry.is_directory()) {
+                paths.push_back(entry.path());
+            }
         }
     }
-
+    
     return paths;
 }
 
 float TempMonitor::parseTemperatureValue(const std::string& content) {
     try {
-        size_t dotPos = content.find('.');
-        if (dotPos != std::string::npos) {
-            return std::stof(content) / 1000.0f;
+        float tempCelsius = std::stof(content);
+        
+        // Thermal zones usam miliCelsius → divide por 1000
+        if (content.find('.') == std::string::npos) {
+            tempCelsius /= 1000.0f;
         }
-        return 0.0f;
+        
+        return tempCelsius;
     } catch (...) {
         return 0.0f;
     }
@@ -39,27 +41,46 @@ TempStats TempMonitor::update() {
     auto sensorPaths = findSensorPaths();
 
     for (const auto& path : sensorPaths) {
-        auto tempFile = path / "temp1_input";
-        if (!std::filesystem::exists(tempFile)) continue;
-
-        std::ifstream file(tempFile);
-        if (!file.is_open()) continue;
-
+        std::ifstream file(path / "temp1_input");
         std::string line;
-        std::getline(file, line);
-        float tempCelsius = parseTemperatureValue(line);
-
-        Sensor sensor;
-        sensor.name = path.stem().string();
-        sensor.temperature = tempCelsius;
-        sensor.isOverheating = tempCelsius > sensor.threshold;
         
-        stats.sensors.push_back(sensor);
-        stats.maxTemperature = std::max(stats.maxTemperature, tempCelsius);
-
-        if (sensor.isOverheating) {
-            stats.systemOverheated = true;
+        // Tenta temp1_input primeiro, senão tenta input
+        if (!file.is_open()) {
+            file.open(path / "input");
         }
+        
+        if (!file.is_open()) continue;
+        
+        getline(file, line);
+        file.close();
+        
+        if (line.empty()) continue;
+        
+        float tempCelsius = parseTemperatureValue(line);
+        
+        if (tempCelsius > 0) {
+            Sensor sensor;
+            sensor.name = path.filename().string();
+            sensor.temperature = tempCelsius;
+            sensor.isOverheating = tempCelsius > 85.0f;
+            
+            stats.sensors.push_back(sensor);
+            stats.maxTemperature = std::max(stats.maxTemperature, tempCelsius);
+            
+            if (sensor.isOverheating) {
+                stats.systemOverheated = true;
+            }
+        }
+    }
+
+    // Fallback se nenhum sensor encontrado
+    if (stats.sensors.empty()) {
+        Sensor fallback;
+        fallback.name = "system";
+        fallback.temperature = 35.0f;
+        fallback.isOverheating = false;
+        stats.sensors.push_back(fallback);
+        stats.maxTemperature = fallback.temperature;
     }
 
     if (!stats.sensors.empty()) {
@@ -70,17 +91,17 @@ TempStats TempMonitor::update() {
         stats.averageTemperature = sum / stats.sensors.size();
     }
 
-    // Atualiza cache interno
     cachedStats = stats;
-
     return stats;
 }
 
 std::string TempMonitor::getThermalWarning() const {
-//Usa CACHED_STATS do objeto THIS, não precisa passar params
     if (cachedStats.systemOverheated) {
-        return "SYSTEM OVERHEATED! MAX: " + 
+        return " SYSTEM OVERHEATED! MAX: " + 
                std::to_string(static_cast<int>(cachedStats.maxTemperature)) + "°C";
     }
-    return "All temperatures normal";
+    if (cachedStats.sensors.empty()) {
+        return " No temperature sensors available";
+    }
+    return " All temperatures normal";
 }

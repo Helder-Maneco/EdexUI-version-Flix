@@ -3,10 +3,12 @@ edex-cli: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/edex-cli.dir/src/main.cpp.o \
-  CMakeFiles/edex-cli.dir/src/app.cpp.o \
+  libui.a \
+  libipc.a \
   libcore.a \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libpthread.a \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libncursesw.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/librt.a \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libpthread.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -47,13 +49,17 @@ edex-cli: \
 
 CMakeFiles/edex-cli.dir/src/main.cpp.o:
 
-CMakeFiles/edex-cli.dir/src/app.cpp.o:
+libui.a:
+
+libipc.a:
 
 libcore.a:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libpthread.a:
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libncursesw.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/librt.a:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libpthread.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 
