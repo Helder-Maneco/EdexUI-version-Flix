@@ -222,6 +222,7 @@ CMakeFiles/edex-cli.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/sstream.tcc /usr/include/c++/16/codecvt \
  /usr/include/c++/16/bits/fs_dir.h /usr/include/c++/16/bits/fs_ops.h \
  /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/../core/temp_stats.hpp \
+ /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/../core/system_info.hpp \
  /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/stats_collector.hpp \
  /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ipc/socket_server.hpp \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
@@ -230,4 +231,5 @@ CMakeFiles/edex-cli.dir/src/main.cpp.o: \
  /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/netinet/in.h \
- /usr/include/bits/in.h
+ /usr/include/bits/in.h \
+ /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.hpp

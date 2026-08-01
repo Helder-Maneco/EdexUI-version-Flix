@@ -37,6 +37,12 @@
 },
 {
   "directory": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build",
+  "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/core.dir/src/core/system_info.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp",
+  "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp",
+  "output": "CMakeFiles/core.dir/src/core/system_info.cpp.o"
+},
+{
+  "directory": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build",
   "command": "/usr/bin/c++  -I/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src -std=gnu++17 -o CMakeFiles/ui.dir/src/ui/renderer.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/renderer.cpp",
   "file": "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/ui/renderer.cpp",
   "output": "CMakeFiles/ui.dir/src/ui/renderer.cpp.o"

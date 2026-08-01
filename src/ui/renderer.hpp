@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "../core/stats_collector.hpp"
+#include "../core/system_info.hpp"
 
 class UIRenderer {
 private:
@@ -17,12 +18,11 @@ public:
     ~UIRenderer();
     
     bool init();
-    void render(const FullSystemStats& stats);
-//DECLARAÇÃO CORRETA AQUI
-    void clearScreen(const FullSystemStats& stats);  
+    void render(const FullSystemStats& stats, const SystemInfo& sysinfo);
+    void clearScreen(const SystemInfo& sysinfo);
     void shutdown();
-
-private:
+    
+    void printUsageBar(double percent, int width, int y);  // ← ADICIONA AQUI!
     void drawText(int x, int y, const std::string& text, int color);
 };
 

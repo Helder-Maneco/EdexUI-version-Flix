@@ -288,6 +288,30 @@ src/core/stats_collector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/core/stats_collector.cpp.s
 .PHONY : src/core/stats_collector.cpp.s
 
+src/core/system_info.o: src/core/system_info.cpp.o
+.PHONY : src/core/system_info.o
+
+# target to build an object file
+src/core/system_info.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/core/system_info.cpp.o
+.PHONY : src/core/system_info.cpp.o
+
+src/core/system_info.i: src/core/system_info.cpp.i
+.PHONY : src/core/system_info.i
+
+# target to preprocess a source file
+src/core/system_info.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/core/system_info.cpp.i
+.PHONY : src/core/system_info.cpp.i
+
+src/core/system_info.s: src/core/system_info.cpp.s
+.PHONY : src/core/system_info.s
+
+# target to generate assembly for a file
+src/core/system_info.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/core/system_info.cpp.s
+.PHONY : src/core/system_info.cpp.s
+
 src/core/temp_stats.o: src/core/temp_stats.cpp.o
 .PHONY : src/core/temp_stats.o
 
@@ -411,6 +435,9 @@ help:
 	@echo "... src/core/stats_collector.o"
 	@echo "... src/core/stats_collector.i"
 	@echo "... src/core/stats_collector.s"
+	@echo "... src/core/system_info.o"
+	@echo "... src/core/system_info.i"
+	@echo "... src/core/system_info.s"
 	@echo "... src/core/temp_stats.o"
 	@echo "... src/core/temp_stats.i"
 	@echo "... src/core/temp_stats.s"

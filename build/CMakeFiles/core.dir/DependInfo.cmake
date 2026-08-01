@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/mem_stats.cpp" "CMakeFiles/core.dir/src/core/mem_stats.cpp.o" "gcc" "CMakeFiles/core.dir/src/core/mem_stats.cpp.o.d"
   "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/net_stats.cpp" "CMakeFiles/core.dir/src/core/net_stats.cpp.o" "gcc" "CMakeFiles/core.dir/src/core/net_stats.cpp.o.d"
   "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/stats_collector.cpp" "CMakeFiles/core.dir/src/core/stats_collector.cpp.o" "gcc" "CMakeFiles/core.dir/src/core/stats_collector.cpp.o.d"
+  "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp" "CMakeFiles/core.dir/src/core/system_info.cpp.o" "gcc" "CMakeFiles/core.dir/src/core/system_info.cpp.o.d"
   "/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/temp_stats.cpp" "CMakeFiles/core.dir/src/core/temp_stats.cpp.o" "gcc" "CMakeFiles/core.dir/src/core/temp_stats.cpp.o.d"
   )
 

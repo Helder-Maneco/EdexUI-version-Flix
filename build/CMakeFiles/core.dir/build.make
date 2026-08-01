@@ -156,6 +156,20 @@ CMakeFiles/core.dir/src/core/temp_stats.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core.dir/src/core/temp_stats.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/temp_stats.cpp -o CMakeFiles/core.dir/src/core/temp_stats.cpp.s
 
+CMakeFiles/core.dir/src/core/system_info.cpp.o: CMakeFiles/core.dir/flags.make
+CMakeFiles/core.dir/src/core/system_info.cpp.o: /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp
+CMakeFiles/core.dir/src/core/system_info.cpp.o: CMakeFiles/core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/core.dir/src/core/system_info.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/core.dir/src/core/system_info.cpp.o -MF CMakeFiles/core.dir/src/core/system_info.cpp.o.d -o CMakeFiles/core.dir/src/core/system_info.cpp.o -c /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp
+
+CMakeFiles/core.dir/src/core/system_info.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core.dir/src/core/system_info.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp > CMakeFiles/core.dir/src/core/system_info.cpp.i
+
+CMakeFiles/core.dir/src/core/system_info.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core.dir/src/core/system_info.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/src/core/system_info.cpp -o CMakeFiles/core.dir/src/core/system_info.cpp.s
+
 # Object files for target core
 core_OBJECTS = \
 "CMakeFiles/core.dir/src/core/cpu_stats.cpp.o" \
@@ -163,7 +177,8 @@ core_OBJECTS = \
 "CMakeFiles/core.dir/src/core/mem_stats.cpp.o" \
 "CMakeFiles/core.dir/src/core/net_stats.cpp.o" \
 "CMakeFiles/core.dir/src/core/stats_collector.cpp.o" \
-"CMakeFiles/core.dir/src/core/temp_stats.cpp.o"
+"CMakeFiles/core.dir/src/core/temp_stats.cpp.o" \
+"CMakeFiles/core.dir/src/core/system_info.cpp.o"
 
 # External object files for target core
 core_EXTERNAL_OBJECTS =
@@ -174,9 +189,10 @@ libcore.a: CMakeFiles/core.dir/src/core/mem_stats.cpp.o
 libcore.a: CMakeFiles/core.dir/src/core/net_stats.cpp.o
 libcore.a: CMakeFiles/core.dir/src/core/stats_collector.cpp.o
 libcore.a: CMakeFiles/core.dir/src/core/temp_stats.cpp.o
+libcore.a: CMakeFiles/core.dir/src/core/system_info.cpp.o
 libcore.a: CMakeFiles/core.dir/build.make
 libcore.a: CMakeFiles/core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libcore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/flix/Flix_Projetos/EdexUi-CLI/EdexUI-version-Flix/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libcore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core.dir/link.txt --verbose=$(VERBOSE)
 

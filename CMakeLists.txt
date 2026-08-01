@@ -16,6 +16,7 @@ add_library(core STATIC
     src/core/net_stats.cpp
     src/core/stats_collector.cpp
     src/core/temp_stats.cpp
+    src/core/system_info.cpp
 )
 
 target_include_directories(core PUBLIC ${PROJECT_SOURCE_DIR}/src)

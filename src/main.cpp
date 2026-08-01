@@ -4,10 +4,10 @@
 #include <thread>
 #include <chrono>
 #include <ncurses.h> 
-// Arquivos incluidos
 #include "ui/renderer.hpp"
 #include "core/stats_collector.hpp"
 #include "ipc/socket_server.hpp"
+#include "core/system_info.hpp"
 
 /*==============|
  * Global Flags |
@@ -33,34 +33,29 @@ class App
     public:
         App() : stats(), ipc_server(18080) {}         
         void start() {
-            std::cout << " Starting Edex-CLI v0.1.0...\n\n";
-            
-            // Register signals
-            signal(SIGINT, signal_handler);
-            signal(SIGTERM, signal_handler);
+	    std::cout << " Starting Edex-CLI v0.1.0...\n\n";
+    
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
 
-            // Initialize UI (NCurses nao Termbox!)
-            if (!renderer.init())
-            {
-                std::cerr << " Failed to initialize UI renderer\n";
-                return ;
-            }
-            
-            // Start background collection
-            stats.start();
+    if (!renderer.init()) {
+        std::cerr << " Failed to initialize UI renderer\n";
+        return ;
+    }
+    
+    stats.start();
+    
+    // Cria coletor de system info
+    SystemInfoCollector sysInfoCollector;
 
-            std::cout << " Press Ctrl+C to exit\n\n";
+    std::cout << " Press Ctrl+C to exit\n\n";
 
-            while (g_running.load()) 
-            {
-                // Get FULL system stats at once (corrigido!)
-                auto fullStats = stats.getFullStats();
+    while (g_running.load()) {
+        auto fullStats = stats.getFullStats();
+        auto sysInfo = sysInfoCollector.collectAll();  // ← SYSTEM INFO
 
-                // Render complete UI with FullSystemStats
-                renderer.render(fullStats);
-
-                // Sleep entre refreshes (valor adicionado!)
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        renderer.render(fullStats, sysInfo);  
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
             
             shutdown();
